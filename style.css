@@ -417,6 +417,16 @@ img {
         -webkit-order:10;
         order:10;
     }
+    
+    #cv-container {
+        flex-direction: column;
+    }
+    
+    #cv-container span {
+        display:block;
+        width:100%;
+        margin-bottom:3rem;
+    }
 }
 
 @media only screen and (max-width:640px) {
@@ -456,6 +466,13 @@ img {
 
     .hidden-nav {
         display:none;
+    }
+    
+    #art-filter {
+        left:0;
+        top:72px;
+        position:relative;
+        margin: 0 auto;
     }
 }
 
