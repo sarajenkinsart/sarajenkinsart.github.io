@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Sara Jenkins Art</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />  
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+  </head>
+  <body id="body">
+    <div id="header">
+      <span class="header-link" id="header-home">Home
+        <span class="header-link icon">&#9776;</span>
+      </span>
+      <span id="header-body" class="hidden-nav">
+        <a href="/work/"><span class="header-link">Artwork</span></a>
+        <a href="/statement/"><span class="header-link">Statement</span></a>
+        <a href="/cv/"><span class="header-link">CV</span></a>
+      </span>
+    </div><!-- #header -->
+
+    <div id="index-main-content">
+      <h1 id="biography">Biography</h1>
+      <div id="main-featured">
+        <span class="main-bio">
+          <p>Sara Jenkins is an artist and a writer</p>
+          <p>She creates abstract work that sometimes incorporates realism.</p>
+          <p>She also writes creative nonfiction essays and poetry.</p>
+        </span>
+        <img src="Understatement.jpg" />
+        <img src="Ruminate.jpg" />
+        <span class="main-bio">
+          <p>Sara Jenkins received her BA in Art Studio and her second major in English from the University of New Mexico</p>
+        </span>
+        <span class="main-bio">
+          <p>She studied in the Honors College and was awarded the Toby Wright Scholarship and the Lottery Scholarship.</p>
+        </span>
+        <img src="Disengaged.jpg" />
+        <img src="Downgrade.jpg" />
+        <span class="main-bio">
+          <p>For several years she's worked as a K-10 summer art teacher, instructing classes in drawing, jewelry, collage, sculpture, and painting.</p>
+        </span>
+        <span class="main-bio">
+          <p>Contact her at sarajenkinsart@gmail.com</p>
+        </span>
+        <img src="Harbour.jpg" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let navBodyVisible = false;
+      $('.icon').click(function() {
+          navBodyVisible?$('#header-body').addClass('hidden-nav'):$('#header-body').removeClass('hidden-nav');
+          navBodyVisible = !navBodyVisible;
+      });
+    </script>
+  </body>
+</html>

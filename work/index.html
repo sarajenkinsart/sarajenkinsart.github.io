@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Sara Jenkins Art</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="../style.css" rel="stylesheet" type="text/css" />  
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+  </head>
+  <body id="body">
+    <div id="header">      
+      <span class="header-link" id="header-home"><a href="../">Home</a>
+        <span class="header-link icon">&#9776;</span>
+      </span>
+      <span id="header-body" class="hidden-nav">
+        <span class="header-link current-link">Artwork</span>
+        <a href="../statement"><span class="header-link">Statement</span></a>
+        <a href="../cv"><span class="header-link">CV</span></a>
+      </span>
+    </div><!-- #header -->
+
+
+    <div id="art-handler">
+      <form>
+        <select id="art-filter">
+          <option value="all">Art Overview</option>
+          <option value="paintings">Paintings</option>
+          <option value="drawings">Drawings</option>
+          <option value="sculptures">Sculptures</option>
+          <option value="collages">Collages &amp; Papercraft</option>
+        </select>
+      </form>
+    </div>
+
+<script>
+    let slideTimedOut = false;
+    let slideX = 0;
+    const slideShow = function(dir) {
+        if (slideTimedOut) return false;
+
+        slideX = dir=="l"?
+          slideX==0?-2500:slideX+100:
+          slideX==-2500?0:slideX-100;
+        $('#leaf-container').css("margin-left", slideX+"%");
+        
+
+        slideTimedOut = true;
+        $('#slideshow-count').html(slideX==0?"1/26":slideX==-2500?"26/26":slideX/-100+1+"/26");
+        return setTimeout(function() {slideTimedOut=false;},1000);
+    } 
+</script>
+
+    <div id="artwork" class="mobile-view">
+      <span id="col0" class="col"></span>
+      <span id="col1" class="col"></span>
+      <span id="col2" class="col"></span>
+      <span id="col3" class="col"></span>
+    </div>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

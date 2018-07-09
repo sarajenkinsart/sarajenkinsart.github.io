@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Sara Jenkins Art</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="../style.css" rel="stylesheet" type="text/css" />  
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+  </head>
+  <body id="body">
+    <div id="header">
+      <span class="header-link" id="header-home"><a href="../">Home</a>
+        <span class="header-link icon">&#9776;</span>
+      </span>
+      <span id="header-body" class="hidden-nav">
+        <a href="../work/"><span class="header-link">Artwork</span></a>
+        <a href="../statement/"><span class="header-link">Statement</span></a>
+        <span class="header-link current-link">CV</span>
+      </span>
+    </div><!-- #header -->
+
+<div id="cv-container">
+
+  <span id="cv-education">
+    <h2>Education &amp; Profession</h2>
+
+    <div class="cv-year">2013</div>
+      <p>
+        <em>Lead with the Arts</em>
+        Meow Wolf - Albuquerque Museum
+      </p>
+      <p>
+        <em>High School Diploma</em>
+        Sandia Preparatory School
+      </p>
+
+    <div class="cv-year">2011 - 2018</div>
+      <p>
+        <em>Summer Art Teacher</em>
+        Sandia Preparatory School
+      </p>
+
+    <div class="cv-year">2018</div>
+      <p>
+        <em>BA in Art Studio</em>
+        <em>BA in English</em>
+        <em>Minor in Honors College</em>
+        University of New Mexico
+      </p>
+  </span>
+
+  <span id="cv-awards">
+    <h2>Awards &amp; Fellowships</h2>
+
+    <div class="cv-year">2012</div>
+      <p>
+        <em>National Honor Society</em>
+        Sandia Preparatory School
+      </p>
+  
+    <div class="cv-year">2013 - 2018</div>
+      <p>
+        <em>Dean’s List</em>
+        University of New Mexico
+      </p>
+  
+    <div class="cv-year">2014</div>
+      <p>
+        <em>Phi Eta Sigma National Honor Society</em>
+        <em>National Society of Collegiate Scholars</em>
+        University of New Mexico
+      </p>
+  
+    <div class="cv-year">2014 - 2018</div>
+      <p>
+        <em>Toby Wright Scholarship</em>
+        Workers’ Compensation Association of New Mexico
+      </p>
+  
+    <div class="cv-year">2018</div>
+      <p>
+        <em>Summa Cum Laude</em>
+        University of New Mexico
+      </p>
+  </span>
+
+  <span id="cv-exhibitions">
+    <h2>Selected Group Exhibitions</h2>
+
+    <div class="cv-year">2013</div>
+      <p>
+        <em>Project Dreamscape</em>
+        Albuquerque Museum
+      </p>
+  
+    <div class="cv-year">2016</div>
+      <p>
+        <em>Arts Unexpected</em>
+        University of New Mexico
+      </p>
+  
+    <div class="cv-year">2018</div>
+      <p>
+        <em>Abstractionists</em>
+        University of New Mexico
+      </p>
+      <p>
+        <em>Reposed Agitation</em>
+        Factory on 5th Art Space, Albuquerque
+      </p>
+  </span>
+
+</div>
+
+    <script>
+      let navBodyVisible = false;
+      $('.icon').click(function() {
+          navBodyVisible?$('#header-body').addClass('hidden-nav'):$('#header-body').removeClass('hidden-nav');
+          navBodyVisible = !navBodyVisible;
+      });
+    </script>
+  </body>
+</html>
