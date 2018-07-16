@@ -25,7 +25,7 @@ a {
     position:fixed;
     top:0;
     padding-left:0.5rem;
-    height:26px;
+    height:25px;
 }
 
 .header-link {
@@ -60,30 +60,52 @@ img {
     border: 1px solid #999999;
 }
 
-#main-featured {
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    position: absolute;
-    align-items: center;
-    padding:5%;
-    padding-top:2%;
-}
-
-#main-featured .main-bio, #main-featured img {
-    margin:2%;
-}
-
-#main-featured .main-bio {
-    display: inline-block;
-    width:46%;
-    padding:2rem;
-    font-size:1.75rem;
+#main-title {
+    font-family: 'Tangerine', cursive;
     text-align: center;
+    font-size: 3rem;
 }
 
-#main-featured img {
-    width: 46%;
+.main-page .text-content {
+    margin-top:7rem;
+}
+
+.main-page p {
+    font-size: 1.25rem;
+    margin:2rem 0;
+    line-height: 2rem;
+}
+
+.sc-icons {
+    word-spacing: 1rem;
+    float:right;
+    padding-top:0.125rem;
+    padding-right: 0.5rem;
+}
+
+.sc-mobile {
+    display:none;
+}
+
+svg {
+    fill: white;
+    height:1.25rem;
+    width:1.25rem;
+    border-radius: 5px;
+}
+
+
+.email svg {
+    padding:0.125rem;
+    background:#f57d00;
+}
+
+.facebook svg {
+    background: #3b5998;
+}
+
+.instagram svg {
+    background: #e4405f;
 }
 
 #art-filter {
@@ -111,40 +133,35 @@ img {
     padding:.75rem;
 }
 
-.art-mobile {
-    top:12px;
-    position: relative;
-    display:none;
-    overflow: hidden;
-    width:0;
-    height:0;
-    
-}
-
-.art-mobile img {
-    width:800px;
-    margin:10%;
-    margin-top:0;
-}
-
-.thumb-hidden .art-mobile {
-    display:flex;
-    height:auto;
-    width:auto;
-}
-
-.thumb-hidden .col {
-    display:none;
+.art img {
+    width: 100%;
+    display: block;
 }
 
 .art {
     margin-bottom: 30px;
     position: relative;
+    display:none;
 }
 
-.art, .art img {
-    width: 100%;
-    display: block;
+.featured .f {
+    display:block;
+}
+
+.collages .c {
+    display:block;
+}
+
+.drawings .d {
+    display:block;
+}
+
+.paintings .p {
+    display:block;
+}
+
+.sculptures .s {
+    display:block;
 }
 
 .art:hover .title, .title:hover {
@@ -177,107 +194,34 @@ img {
     float: right;
 }
 
-.slideshow {
-    margin:0 auto;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    height: 160px;
-    border: 3px solid rgba(25, 25, 25, 0.3);
-    background: white;
-    overflow: hidden;
-}
-
-#leaf-container {
-    display:flex;
-    position: absolute;
-    top:-50px;
-    margin-left:0;
-    align-items: center;
-    height: 250px;
-    width:2600%;
-}
-
-.animation {
-    animation-duration: 0.5s;
-    transition: margin-left 1000ms;
-}
-
-.leaf, .leaf img {
-    width: 100%;
-    height:auto;
-    display: inline-block;
-    border:0;
-}
-
-.toggle-slide {
-    top:0;
-    position: absolute;
-    height:100%;
-    width:20%;
-    padding-left:9%;
-    padding-top:65px;
-}
-
-.arrow:hover, .toggle-slide:hover .arrow {
-    border: solid rgba(1,1,1,0.3);
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-}
-
-.arrow-right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-}
-
-.arrow-left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-}
-
-.s-right {
+#full-image-container {
+    position:fixed;
+    top:25px;
+    bottom:0;
+    left:0;
     right:0;
+    background:rgba(0,0,0,0.8);
 }
 
-#slideshow-count {
-    bottom: 0;
-    position: absolute;
-    background: rgb(186,182,176);
-    padding: 0 5px 0 2px;
-    text-align: center;
-    color: #FFFAF0;
-    font-size: 12px;
-    font-family: tahoma;
-    border-radius: 0 7px 0 0;
-    text-align: center;
-    width:50px;
+#full-image-window img {
+    max-width:97%;
+    max-height:97%;
+    display:block; 
+    margin-top:1%;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right:auto;
 }
 
-.slideshow-year {
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    background: rgba(0.9,0.9,0.9,0.3);
-    padding: 0 2px 0 5px;
-    color: #FFFAF0;
-    font-size: 12px;
-    font-family: arial;
-    border-radius: 7px 0 0 0;
-    text-align: center;
-    width:50px;
-}
-
-#statement-header {
+.header {
     display: none;
 }
 
-#statement-main-content {
+.main-content {
     margin-top: 2rem;
 }
 
-#statement-text-content {
+.text-content {
     width:45%;
     margin-right:4%;
     margin-top:1rem;
@@ -286,10 +230,9 @@ img {
     word-spacing: 0.125rem;
     text-align:justify;
     line-height: 1.75rem;
-    text-indent: 1rem;
 }
 
-#statement-featured img {
+.featured-img img {
     display: relative;
     top:4rem;
     left:4%;
@@ -328,25 +271,20 @@ img {
     font-size:1.125rem;
 }
 
+.profession {
+    margin:3rem;
+}
+
+.hidden {
+    display: none;
+}
+
 @media only screen and (max-width:1080px) {
-    .col {
-        display:none;
+    .main-page p {
+        margin:4rem 0;
     }
     
-    .art-mobile {
-        display:block;
-        padding:5%;
-        padding-top:0;
-        height:auto;
-        width:auto;
-    }
-    
-    .art-mobile img {
-        width:100%;
-        margin: 0 auto;
-    }
-    
-    #statement-text-content, #statement-featured img {
+    .text-content, .featured-img img {
         display: block;
         position: relative;
         margin: 0 auto;
@@ -355,67 +293,39 @@ img {
         margin-top: 4rem;
     }
     
-    #statement-featured img {
+    .featured-img img {
         position:static;
         margin-bottom: 4rem;
     }
 }
 
 @media only screen and (max-width:860px) {
-    #main-featured img, #main-featured .main-bio {
-        display: block;
-        width:100%;
+    #artwork {
+        padding:0;
+        flex-direction:column;
+        margin-top:2rem;
+    }
+    
+    #mobile {
+        width: 90%;
         margin: 0 auto;
     }
     
-    #main-featured .main-bio:nth-child(1) {
-        -webkit-order:1;
-        order:1;
+    #mobile .art {
+        padding:0.5rem 0;
     }
     
-    #main-featured img:nth-child(2) {
-        -webkit-order:2;
-        order:2;
+    .title {
+        display: block;
+        height: 20px;
+        bottom: -12px;
+        visibility:initial;
     }
     
-    #main-featured .main-bio:nth-child(4) {
-        -webkit-order:3;
-        order:3;
-    }
-    
-    #main-featured img:nth-child(3) {
-        -webkit-order:4;
-        order:4;
-    }
-    
-    #main-featured .main-bio:nth-child(5) {
-        -webkit-order:5;
-        order:5;
-    }
-    
-    #main-featured img:nth-child(6) {
-        -webkit-order:6;
-        order:6;
-    }
-    
-    #main-featured .main-bio:nth-child(8) {
-        -webkit-order:7;
-        order:7;
-    }
-    
-    #main-featured img:nth-child(7) {
-        -webkit-order:8;
-        order:8;
-    }
-    
-    #main-featured .main-bio:nth-child(9) {
-        -webkit-order:9;
-        order:9;
-    }
-    
-    #main-featured img:nth-child(10) {
-        -webkit-order:10;
-        order:10;
+    title:hover, .art:hover .title {
+        transition: none;
+        display: block;
+        bottom: -12px;
     }
     
     #cv-container {
@@ -452,7 +362,7 @@ img {
     }
     
     #header-body .header-link {
-        border-top:1px solid white;
+        border-top:1px solid #FFFAF0;
     }
     
     #header-home:first-child span {
@@ -463,9 +373,49 @@ img {
         text-decoration: none;
         background: #333;
     }
+    
+    #header .contact-links {
+        display:none;
+    }
 
     .hidden-nav {
         display:none;
+    }
+    
+    #header .sc-icons {
+        display: none;
+    }
+    
+    .sc-mobile {
+        display: block;
+        width:3rem;
+        margin:0 auto;
+        float:none;
+        height:3rem;
+        margin-bottom:4rem;
+    }
+    
+    svg {
+        position: absolute;
+        height:3rem;
+        width:3rem;
+        border-radius: 16px;
+    }
+    
+    .instagram svg {
+        margin-left:-5rem;
+    }
+    
+    .email svg {
+        margin-left:5rem;
+    }
+    
+    .main-page .text-content {
+        text-align: center;
+    }
+
+    #artwork {
+        margin-bottom:2rem;
     }
     
     #art-filter {
@@ -473,6 +423,10 @@ img {
         top:72px;
         position:relative;
         margin: 0 auto;
+    }
+    
+    #cv-container span:last-child {
+        margin-bottom: 0;
     }
 }
 

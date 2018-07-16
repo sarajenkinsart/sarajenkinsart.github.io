@@ -9,124 +9,86 @@ $(document).ready(function() {
     });
 
     if ($('#artwork').length) {
-        if (parseInt($(document).width()) > 1080) {
-            $("select option:contains('Art Overview')").text("Art Overview (Thumbnail)");
-        }      
+        var allArt;        
+        let lgScreen = parseInt($(document).width()) > 860;
         let choices = ["collages", "drawings", "paintings", "sculptures"];
-        let mediums = {};
-            
-        for (let x=0; x<=choices.length; x++) {
-            mediums[x<4?choices[x]:"all"] = {
-                "artwork":[],
-                "indexes":[],
-                "visible":true,
-            };
-        }
-        
-        let dMarkup = ["<span class='col'>", "<span class='col'>", "<span class='col'>", "<span class='col'>"];
-        let mobileMarkup = "<div id='mobile-container'>";
-        let leafSlide = ['<div id="slideshow-container"><div class="slideshow"><div id="leaf-container" class="animation">',
-                        '</div><span class="toggle-slide s-left" onmouseup="slideShow(\'l\')">',
-                        '<i class="arrow arrow-left"></i></span>',
-                        '<span class="toggle-slide s-right" onmouseup="slideShow(\'r\')">',
-                        '<i class="arrow arrow-right"></i></span>',
-                        '<span id="slideshow-count">1/26</span>',
-                        '<span class="slideshow-year">2016</span></div></div>'
-                        ];
+        let count;
+        let imgMarkup;
+        let imgDestination
 
         let fileJSON = new XMLHttpRequest();
         fileJSON.overrideMimeType("application/json");
         fileJSON.open("GET", "../artwork.json", true);
         fileJSON.onreadystatechange = function() {
+            
             if (this.readyState == 4 && this.status == 200) {
+                allArt = JSON.parse(this.responseText);
 
-                mediums["all"]["artwork"] = JSON.parse(this.responseText);
-                const allArt = mediums["all"]["artwork"];
+                for (let x=allArt["count"]-1;x>=0;x--) {
+                    let thisArt = allArt[x];
 
-                for (let count=allArt["count"]-1;count>=0;count--) {
-                    let thisArt = allArt[count];
-                    if (!thisArt.inGallery) {
-                        continue;
-                    };
+                switch(thisArt.name) {
 
-                    mediums[thisArt.medium]["indexes"].push(count);
-                    mediums[thisArt.medium]["count"] = mediums[thisArt.medium]["artwork"].push(thisArt);
+                    case "Fairy Tales&apos; Shadows":
+                    case "Mixed Media Piece": 
+                    case "First Steps": count=0; break;
 
-                    if (count>=17&&count<=42) {
-                        leafSlide[0] += '<span class="leaf"><img src="thumb/' + thisArt.src + '" /></span>';
-                        if (count==17) document.getElementById('col'+count%4).innerHTML += leafSlide.join("");
-                        continue;
+                    case "Balloons":
+                    case "Leaf 6":
+                    case "Transience":
+                    case "First Light":
+                    case "Fractured Enlightment": count=1; break;
 
-                    } else if (thisArt.name=="Nostalgia") {
-                        document.getElementById('col1').innerHTML += '<div class="art"><img src="thumb/' + thisArt.src + 
-                                            '" /><div class="title"><span class="name">' + thisArt.name + 
-                                            "</span><span class='year'>" + thisArt.year +
-                                            "</span></div></div>";
+                    case "Leaf 23":
+                    case "Aroma":
+                    case "Lantern": count=2; break;
 
-                    } else {
-                        document.getElementById('col'+count%4).innerHTML += '<div class="art"><img src="thumb/' + thisArt.src + 
-                                            '" /><div class="title"><span class="name">' + thisArt.name + 
-                                            "</span><span class='year'>" + thisArt.year +
-                                            "</span></div></div>";
-                    }
+                    case "Nostalgia":
+                    case "Irises": count=3; break;
 
-                    mobileMarkup += "<div class='art-mobile' id='mobile" + count +  "'><img src='" + 
-                                    thisArt.medium + "/" + thisArt.src + "' /></div>";
-
+                    default: count=x;
                 }
-                document.getElementById('artwork').innerHTML += mobileMarkup + "</div>";
+
+                if (lgScreen) {
+                    imgMarkup = "<a href='#" + thisArt.src + "'><img id='art" + 
+                                x + "' src='desktop/" + thisArt.src + "' /></a>";
+                    imgDestination = 'col'+count%4;
+                }
+                else {
+                    imgMarkup = "<img src='mobile/" + thisArt.src + "' />";
+                    imgDestination = 'mobile';
+                }
+
+                let thumbClass = thisArt.featured=="true"?thisArt.medium[0]+" f":thisArt.medium[0];
+                document.getElementById(imgDestination)
+                    .innerHTML += '<div class="art ' + thumbClass + '">' + 
+                                imgMarkup + '<div class="title"><span class="name">' + 
+                                thisArt.name + "</span><span class='year'>" + 
+                                thisArt.year + "</span></div></div>";
+                }
+
+                if (lgScreen) {
+                    for (let i=allArt["count"]-1;i>=0;i--) if (allArt[i].featured) {
+        
+                        $('#art'+i).mouseup(function() {
+                            document.getElementById('current-image').src = ("full/" + allArt[i].src);
+                            $('#full-image-container').removeClass('hidden');
+                        })
+        
+                    }
+                }
 
             }
+
         };
 
         fileJSON.send(null);
 
-        $("#art-filter").val("all-art");
-        let artToggle = function(medium, display) {
-                for (let a=0; a<mediums[medium]["count"]; a++) {
-                    $('#mobile'+mediums[medium]["indexes"][a]).css('display', display)
-                };
-                return display=="block";
-        }
-    
-        let artFilter = function() {
-            let choice = $("#art-filter").val();
-            if (choice=='all') {
-                for (let x=0;x<choices.length;x++) {
-                    if (!mediums[choice].visible) {
-                        mediums[choices[x]].visible = artToggle(choices[x],"block");
-                    }
-                }
-                $('#artwork').removeClass("thumb-hidden");
-                return mediums["all"].visible = true;
-            }
-            for (let x=0; x<choices.length; x++) {
-                if (choice!=choices[x]) {
-                    mediums[choices[x]].visible = artToggle(choices[x],"none");
-                }
-            }
-            if (mediums["all"].visible) {
-                $('#artwork').addClass("thumb-hidden");
-                mediums["all"].visible=false;
-            }
-            mediums[choice].visible = artToggle(choice, "block")
-        }
-    
-        // *****EVENT-HANDLERS*****
-        $("#art-filter").val("all");
+        $("#art-filter").val("featured");
         $("#art-filter").change(function() {
-            artFilter();
+            document.getElementById("artwork")
+                    .className = $("#art-filter").val();
             $(this).blur();
-        })
-
-        $(window).resize(function() {
-            if (parseInt($(document).width())>1080 && mediums["all"].visible) {
-                for (let x=0;x<choices.length;x++) {
-                    if (!mediums[choices[x]].visible) {
-                        mediums[choices[x]].visible = artToggle(choices[x],"none");
-                    }
-                }
-            }
         })
 
     }
