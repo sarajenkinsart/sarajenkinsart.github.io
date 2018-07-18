@@ -61,7 +61,7 @@ img {
 }
 
 #main-title {
-    font-family: 'Tangerine', cursive;
+    font-family: Helvetica, sans-serif;
     text-align: center;
     font-size: 3rem;
 }
@@ -72,7 +72,7 @@ img {
 
 .main-page p {
     font-size: 1.25rem;
-    margin:2rem 0;
+    margin:4rem 0;
     line-height: 2rem;
 }
 
@@ -144,23 +144,7 @@ svg {
     display:none;
 }
 
-.featured .f {
-    display:block;
-}
-
-.collages .c {
-    display:block;
-}
-
-.drawings .d {
-    display:block;
-}
-
-.paintings .p {
-    display:block;
-}
-
-.sculptures .s {
+.featured .f, .collages .c, .drawings .d, .paintings .p, .sculptures .s {
     display:block;
 }
 
@@ -280,9 +264,7 @@ svg {
 }
 
 @media only screen and (max-width:1080px) {
-    .main-page p {
-        margin:4rem 0;
-    }
+
     
     .text-content, .featured-img img {
         display: block;
@@ -355,10 +337,11 @@ svg {
     }
     
     .header-link {
+        font-size: 1.5rem;
         display:block;
         text-align: left;
-        padding:.25rem .25rem;
-        padding-left: .5rem;
+        padding:.5rem;
+        padding-right: 2rem;
     }
     
     #header-body .header-link {

@@ -12,6 +12,7 @@ $(document).ready(function() {
         var allArt;        
         let lgScreen = parseInt($(document).width()) > 860;
         let choices = ["collages", "drawings", "paintings", "sculptures"];
+        let medCount = {"collages":0,"drawings":0,"paintings":0,"sculptures":0};
         let count;
         let imgMarkup;
         let imgDestination
@@ -23,58 +24,69 @@ $(document).ready(function() {
             
             if (this.readyState == 4 && this.status == 200) {
                 allArt = JSON.parse(this.responseText);
-
-                for (let x=allArt["count"]-1;x>=0;x--) {
+                allArt["count"]--;
+                for (let x=allArt["count"];x>=0;x--) {
                     let thisArt = allArt[x];
 
-                switch(thisArt.name) {
+                    if (lgScreen) {
 
-                    case "Fairy Tales&apos; Shadows":
-                    case "Mixed Media Piece": 
-                    case "First Steps": count=0; break;
+                        if (thisArt.featured=="true") {
 
-                    case "Balloons":
-                    case "Leaf 6":
-                    case "Transience":
-                    case "First Light":
-                    case "Fractured Enlightment": count=1; break;
+                            switch(thisArt.name) {
+                                case "Aroma": count=0; break;
+                                case "Nostalgia": case "Leaf 17": case "Transience": count=1; break;
+                                case "Fractured Enlightenment": count=3; break;
+                                default: count=allArt["count"]-x;
+                            }
 
-                    case "Leaf 23":
-                    case "Aroma":
-                    case "Lantern": count=2; break;
+                            document.getElementById('col'+count%4)
+                                .innerHTML += '<div class="art f">' + 
+                                            "<a href='#" + thisArt.src + "'><img id='artf" + 
+                                            x + "' src='desktop/" + thisArt.src + "' /></a>" + 
+                                            '<div class="title"><span class="name">' + 
+                                            thisArt.name + "</span><span class='year'>" + 
+                                            thisArt.year + "</span></div></div>";
+                        }
 
-                    case "Nostalgia":
-                    case "Irises": count=3; break;
+                        switch(thisArt.name) {
+                            case "My Father&apos;s Ring": count=0; break;
+                            case "Untitled Drawing": count=1; break;
+                            default: count=medCount[thisArt.medium]++%4;
+                        }
 
-                    default: count=x;
+                        document.getElementById('col'+count%4)
+                            .innerHTML += '<div class="art ' + thisArt.medium[0] + '">' + 
+                                        "<a href='#" + thisArt.src + "'><img id='art" + 
+                                        x + "' src='desktop/" + thisArt.src + "' /></a>" + 
+                                        '<div class="title"><span class="name">' + 
+                                        thisArt.name + "</span><span class='year'>" + 
+                                        thisArt.year + "</span></div></div>";
+
+                    }
+
+                    else {
+                        let thumbClass = thisArt.featured=="true"?thisArt.medium[0]+" f":thisArt.medium[0];
+                        document.getElementById("mobile")
+                            .innerHTML += '<div class="art ' + thumbClass + '">' + 
+                                        "<img src='mobile/" + thisArt.src + "' />" + 
+                                        '<div class="title"><span class="name">' + 
+                                        thisArt.name + "</span><span class='year'>" + 
+                                        thisArt.year + "</span></div></div>";
+                    }
+
                 }
 
                 if (lgScreen) {
-                    imgMarkup = "<a href='#" + thisArt.src + "'><img id='art" + 
-                                x + "' src='desktop/" + thisArt.src + "' /></a>";
-                    imgDestination = 'col'+count%4;
-                }
-                else {
-                    imgMarkup = "<img src='mobile/" + thisArt.src + "' />";
-                    imgDestination = 'mobile';
-                }
+                    for (let i=0; i<=allArt["count"];i++) {
+                        $('#artf'+i).mouseup(function() {
+                            document.getElementById('current-image').src = ("full/" + allArt[i].src);
+                            $('#full-image-container').removeClass('hidden');
+                        })
 
-                let thumbClass = thisArt.featured=="true"?thisArt.medium[0]+" f":thisArt.medium[0];
-                document.getElementById(imgDestination)
-                    .innerHTML += '<div class="art ' + thumbClass + '">' + 
-                                imgMarkup + '<div class="title"><span class="name">' + 
-                                thisArt.name + "</span><span class='year'>" + 
-                                thisArt.year + "</span></div></div>";
-                }
-
-                if (lgScreen) {
-                    for (let i=allArt["count"]-1;i>=0;i--) if (allArt[i].featured) {
-        
                         $('#art'+i).mouseup(function() {
                             document.getElementById('current-image').src = ("full/" + allArt[i].src);
                             $('#full-image-container').removeClass('hidden');
                         })
-        
                     }
                 }
 
