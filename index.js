@@ -3,10 +3,10 @@
 
 $(document).ready(function() {
     let navBodyVisible = false;
-    $('.icon').click(function() {
-        navBodyVisible?$('#header-body').addClass('hidden-nav'):$('#header-body').removeClass('hidden-nav');
+    document.getElementById('icon').addEventListener('click', function() {
+        document.getElementById('header-body').className = (navBodyVisible?"hidden-nav":"");
         navBodyVisible = !navBodyVisible;
-    });
+    })
 
     if ($('#artwork').length) {
         var allArt;        
@@ -15,7 +15,7 @@ $(document).ready(function() {
         let medCount = {"collages":0,"drawings":0,"paintings":0,"sculptures":0};
         let count;
         let imgMarkup;
-        let imgDestination
+        let imgDestination;
 
         let fileJSON = new XMLHttpRequest();
         fileJSON.overrideMimeType("application/json");

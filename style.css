@@ -48,7 +48,7 @@ a {
     text-decoration-color: rgba(255, 250, 240,0.75);
 }
 
-.icon {
+#icon {
     display: none;
 }
 
@@ -322,7 +322,8 @@ svg {
 }
 
 @media only screen and (max-width:640px) {
-    .icon {
+    #icon {
+        display:block;
         position:fixed;
         top:0;
         right:0;
