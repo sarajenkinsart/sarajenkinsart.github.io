@@ -34,8 +34,8 @@ $(document).ready(function() {
 
                             switch(thisArt.name) {
                                 case "Aroma": count=0; break;
-                                case "Nostalgia": case "Leaf 17": case "Transience": count=1; break;
-                                case "Fractured Enlightenment": count=3; break;
+                                case "Leaf 17": case "Transience": count=1; break;
+                                case "Fractured Enlightenment": case "Mixed Media Piece": count=3; break;
                                 default: count=allArt["count"]-x;
                             }
 
@@ -48,11 +48,7 @@ $(document).ready(function() {
                                             thisArt.year + "</span></div></div>";
                         }
 
-                        switch(thisArt.name) {
-                            case "My Father&apos;s Ring": count=0; break;
-                            case "Untitled Drawing": count=1; break;
-                            default: count=medCount[thisArt.medium]++%4;
-                        }
+                        count = medCount[thisArt.medium]++%4;
 
                         document.getElementById('col'+count%4)
                             .innerHTML += '<div class="art ' + thisArt.medium[0] + '">' + 
