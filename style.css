@@ -188,6 +188,7 @@ svg {
 }
 
 #full-image-window img {
+    background:rgb(255,255,255);
     max-width:97%;
     max-height:97%;
     display:block; 
@@ -217,7 +218,7 @@ svg {
 }
 
 .featured-img img {
-    display: relative;
+    display: block;
     top:4rem;
     left:4%;
     margin-bottom:3rem;
@@ -246,7 +247,6 @@ svg {
     margin-top: 1rem;
     margin-bottom:0.25rem;
     width:100%;
-    /* font-weight: bold; */
     font-size:1rem;
 }
 
